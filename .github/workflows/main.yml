@@ -1,0 +1,22 @@
+name: Deploy to Docker on VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Pandoc
+      run: sudo apt-get install pandoc -y
+
+    - name: Convert Markdown to HTML
+      run: |
+        chmod +x convert.sh
+        ./convert.sh
